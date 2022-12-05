@@ -32,7 +32,7 @@ class UsersInput:
     def __init__(self):
         self.file_name = input('Введите название файла: ')
         self.profession_name = input('Введите название профессии: ')
-        self.user_desire = input('Какие данные нужны: Вакансии или Статистика').lower()
+        self.user_desire = input('Какие данные нужны (Вакансии или Статистика): ').lower()
 
         self.file_name = self.check_file_name(self.file_name)
         self.profession_name = self.check_profession_name(self.profession_name)
@@ -52,7 +52,7 @@ class UsersInput:
     @staticmethod
     def check_user_desire(user_desire: str):
         if user_desire == '' or user_desire != 'вакансии' or user_desire != 'статистика':
-            do_exit('Некорректные данные')
+            do_exit('Некорректный ввод')
         return user_desire
 
 
