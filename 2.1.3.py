@@ -32,6 +32,7 @@ class UsersInput:
     def __init__(self):
         self.file_name = input('Введите название файла: ')
         self.profession_name = input('Введите название профессии: ')
+        self.user_desire = input('Какие данные нужны: Вакансии или Статистика').lower()
 
         self.file_name = self.check_file_name(self.file_name)
         self.profession_name = self.check_profession_name(self.profession_name)
@@ -47,6 +48,12 @@ class UsersInput:
         if profession_name == '':
             do_exit('Некорректное название профессии')
         return profession_name
+
+    @staticmethod
+    def check_user_desire(user_desire: str):
+        if user_desire == '' or user_desire != 'вакансии' or user_desire != 'статистика':
+            do_exit('Некорректные данные')
+        return user_desire
 
 
 class DataSet:
@@ -408,6 +415,8 @@ dataset = DataSet(users_input.file_name)
 column_names, vacancies_data = dataset.columns_names, dataset.vacancies_data
 output_data = output(vacancies_data, users_input.profession_name)
 report = Report(output_data, users_input.profession_name)
-report.generate_excel()
-report.generate_image()
-report.generate_pdf()
+if users_input.user_desire == 'вакансии':
+    report.generate_excel()
+elif users_input.user_desire == 'статистика':
+    report.generate_image()
+# report.generate_pdf()
