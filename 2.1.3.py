@@ -52,7 +52,7 @@ class UsersInput:
     @staticmethod
     def check_user_desire(user_desire: str):
         if user_desire == '' or user_desire != 'вакансии' or user_desire != 'статистика':
-            do_exit('Некорректные данные')
+            do_exit('Некорректный ввод данных')
         return user_desire
 
 
